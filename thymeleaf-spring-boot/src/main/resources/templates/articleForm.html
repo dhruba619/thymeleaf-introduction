@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/app.css}" rel="stylesheet"/>
+<body class='typora-export os-windows'>
+<form th:action="@{/article}" th:object="${article}" method="post">
+    <div class='is-node custom-form'>
+        <label>Title:</label>
+        <input type="text" th:field="*{title}"/>
+        <span class="field-error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</span>
+    </div>
+    <div class='is-node custom-form'>
+        <label>Content:</label>
+        <textarea th:field="*{content}"/>
+        <span class="field-error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Name Error</span>
+    </div>
+
+    <div class='is-node custom-form'>
+        <label>Select a Category:</label>
+        <div th:each="category : ${categories}">
+            <input type="radio" th:field="*{category}" th:value="${category}"/>
+            <label th:for="${#ids.prev('category')}" th:text="${category}"></label>
+        </div>
+    </div>
+    <div class='is-node custom-form'>
+        <label>Select a Technology:</label>
+        <select th:field="*{technology}">
+            <option th:each="technology : ${technologies}" th:value="${technology}"
+                    th:text="${technology}">
+            </option>
+        </select>
+    </div>
+    <div class='is-node custom-form'>
+        <label>Select Areas:</label>
+        <div th:each="area : ${areas}">
+            <input type="checkbox" th:field="*{area}" th:value="${area}"/>
+            <label th:for="${#ids.prev('area')}" th:text="${area}"></label>
+        </div>
+    </div>
+
+    <div class='is-node custom-form'>
+        <li class="field-error" th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+        <button th:type="submit">SUBMIT</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/app.css}" rel="stylesheet"/>
+<body class='typora-export os-windows'>
+<div id='write' class='is-node'>
+    <tr th:each="article : ${articles}">
+        <div th:with="author=${authors[article.author]}">
+            <h1 th:text="${article.title}">name</h1>
+            <h4 th:text="${author.name}">author</h4>
+            <p th:text="${article.content}">contetnt</p>
+        </div>
+    </tr>
+</div>
+</body>
+</html>

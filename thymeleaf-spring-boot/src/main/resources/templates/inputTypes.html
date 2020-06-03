@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<form th:action="@{/article}" th:object="${article}" method="post">
+		<div>
+			<label>Title:</label> <input type="text" th:field="*{title}" />
+		</div>
+		<div>
+		    <label>Select a Category:</label>
+			<ul>
+				<li th:each="category : ${categories}">
+				    <input type="radio" th:field="*{category}" th:value="${category}" />
+					<label th:for="${#ids.prev('category')}" th:text="${color}"></label>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<label>Select a Technology:</label>
+			<select th:field="*{technology}">
+				<option th:each="technology} : ${technologies}" th:value="${technology}}"
+					th:text="${technology}}">
+				</option>
+			</select>
+		</div>
+		<div>
+		    <label>Select a Area:</label>
+			<ul>
+				<li th:each="area : ${areas}">
+				    <input type="checkbox" th:field="*{area}" th:value="${color}" />
+					<label th:for="${#ids.prev('area')}" th:text="${area}"></label>
+				</li>
+			</ul>
+		</div>
+	</form>
+</body>
+</html>

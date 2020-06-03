@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<table th:if="${not #list.isEmpty(articles)}">
+    <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="article : ${articles}">
+        <td th:text="${article.name}">name</td>
+        <td th:text="${article.author}">author</td>
+        <td th:text="${article.description">description</td>
+        <td th:text="${article.category}">category</td>
+        <td th:text="${article.date}">date</td>
+    </tr>
+</table>
+
+<div th:if="${#lists.isEmpty(kv)}">
+    <h2>No data found</h2>
+</div>
+<div>
+    <td th:switch="${article.category}">
+        <span th:case="'TECHNOLOGY'" th:text="Technical Articles"/>
+        <span th:case="'FASHION'" th:text="About latest fashion trends"/>
+		<span th:case="'FOOD'" th:text="Are you hungry..."/>
+    </td>
+</div>
+</body>
+</html>
